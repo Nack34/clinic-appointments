@@ -1,0 +1,50 @@
+:root {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: #1d2330;
+  background: #f4f6f8;
+  --muted: #667085;
+  --border: #e3e6eb;
+  --primary: #0f766e;
+  --primary-bg: #e6f4f2;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; }
+h1, h2, h3 { margin: 0 0 12px; }
+h2 { font-size: 18px; }
+h3 { font-size: 15px; }
+
+.page { max-width: 1080px; margin: 0 auto; padding: 24px; }
+header p { color: var(--muted); margin: 0 0 20px; }
+.card { background: white; border: 1px solid var(--border); border-radius: 10px; padding: 18px; }
+.muted { color: var(--muted); font-size: 14px; }
+
+label { display: grid; gap: 4px; font-size: 13px; color: var(--muted); }
+input, select { font: inherit; color: inherit; padding: 8px 10px; border: 1px solid var(--border); border-radius: 6px; background: white; }
+button { font: inherit; padding: 8px 14px; border-radius: 6px; border: 1px solid var(--border); background: white; cursor: pointer; }
+button:disabled { opacity: 0.5; cursor: not-allowed; }
+button.primary { background: var(--primary); border-color: var(--primary); color: white; }
+button.link { border: none; background: none; color: var(--primary); padding: 0 4px; }
+
+.filters { display: flex; gap: 16px; align-items: end; margin-bottom: 16px; flex-wrap: wrap; }
+.columns { display: grid; grid-template-columns: 3fr 2fr; gap: 16px; }
+@media (max-width: 800px) { .columns { grid-template-columns: 1fr; } }
+
+.slots { display: grid; grid-template-columns: repeat(auto-fill, minmax(76px, 1fr)); gap: 8px; }
+.slot { font-variant-numeric: tabular-nums; }
+.slot.selected { background: var(--primary); border-color: var(--primary); color: white; }
+
+.booking { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--border); display: grid; gap: 12px; }
+.picker .row { display: flex; gap: 8px; align-items: end; }
+.new-patient { display: grid; gap: 10px; margin-top: 10px; }
+.patient { margin: 0; }
+
+.agenda { list-style: none; margin: 0; padding: 0; }
+.agenda li { display: grid; grid-template-columns: 56px 1fr auto; gap: 8px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border); }
+.agenda li:last-child { border-bottom: none; }
+.agenda li.cancelled { color: var(--muted); text-decoration: line-through; }
+.agenda small { color: var(--muted); }
+
+.message { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; border-radius: 8px; margin-bottom: 16px; }
+.message.ok { background: var(--primary-bg); color: var(--primary); }
+.message.error { background: #fdf1f0; color: #b42318; }

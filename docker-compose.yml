@@ -1,0 +1,33 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: clinic
+      POSTGRES_PASSWORD: clinic
+      POSTGRES_DB: clinic
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U clinic"]
+      interval: 5s
+      retries: 10
+
+  api:
+    build: ./src/Clinic.Api
+    environment:
+      Database__Provider: Postgres
+      ConnectionStrings__Clinic: Host=db;Database=clinic;Username=clinic;Password=clinic
+      Clinic__TimeZone: America/Argentina/Buenos_Aires
+    depends_on:
+      db:
+        condition: service_healthy
+
+  web:
+    build: ./web
+    ports:
+      - "8080:80"
+    depends_on:
+      - api
+
+volumes:
+  pgdata:
